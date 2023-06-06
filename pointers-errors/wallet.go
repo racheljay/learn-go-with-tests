@@ -2,14 +2,15 @@ package main
 
 import "fmt"
 
+type Bitcoin int
+
 // Stringer is defined as a part of the format package
 // https://pkg.go.dev/fmt#Stringer
 type Stringer interface {
 	String() string
 }
 
-type Bitcoin int
-
+// this is changing how we will see the "Bitcoin" type get printed
 func (b Bitcoin) String() string {
 	return fmt.Sprintf("%d BTC", b)
 }
@@ -23,5 +24,9 @@ func (w *Wallet) Deposit(amount Bitcoin) {
 }
 
 func (w *Wallet) Balance() Bitcoin {
-	return 0 // w.balance
+	return w.balance
+}
+
+func (w *Wallet) Withdraw(amount Bitcoin) {
+	w.balance -= amount
 }
