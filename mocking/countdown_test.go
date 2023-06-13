@@ -22,22 +22,14 @@ func (s *SpyCountDownOperations) Write(p []byte) (n int, err error) {
 const write = "write"
 const sleep = "sleep"
 
-type SpySleeper struct {
-	Calls int
-}
-
-func (s *SpySleeper) Sleep() {
-	s.Calls++
-}
-
 func TestCountdown(t *testing.T) {
 
-	t.Run("runs three times", func(t *testing.T) {
-
+	t.Run("prints 3 to Go!", func(t *testing.T) {
 		buffer := &bytes.Buffer{}
-		spySleeper := &SpySleeper{}
+		// spySleeper := &SpySleeper{}
 
-		Countdown(buffer, spySleeper)
+		// for this test we only use the buffer String
+		Countdown(buffer, &SpyCountDownOperations{})
 
 		got := buffer.String()
 		want := `3
@@ -47,10 +39,6 @@ Go!`
 
 		if got != want {
 			t.Errorf("got %q want %q", got, want)
-		}
-
-		if spySleeper.Calls != 3 {
-			t.Errorf("not enough calls to sleeper, want 3 got %d", spySleeper.Calls)
 		}
 	})
 
