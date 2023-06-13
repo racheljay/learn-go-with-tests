@@ -27,7 +27,6 @@ func TestCountdown(t *testing.T) {
 
 	t.Run("prints 3 to Go!", func(t *testing.T) {
 		buffer := &bytes.Buffer{}
-		// spySleeper := &SpySleeper{}
 
 		// for this test we only use the buffer String
 		Countdown(buffer, &SpyCountDownOperations{})
