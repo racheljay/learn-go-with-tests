@@ -26,6 +26,10 @@ func Countdown(out io.Writer, sleeper Sleeper) {
 		fmt.Fprintln(out, i)
 		sleeper.Sleep()
 	}
+	// for i := countdownStart; i > 0; i-- {
+	// 	fmt.Fprintln(out, i)
+	// 	// sleeper.Sleep()
+	// }
 	// remember, "out" is not being printed,
 	// it is what allows us to print
 	fmt.Fprint(out, finalWord)
